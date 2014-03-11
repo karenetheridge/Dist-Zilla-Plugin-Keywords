@@ -1,0 +1,4 @@
+/.build/
+!.gitignore
+/Dist-Zilla-Plugin-Keywords-*/
+/Dist-Zilla-Plugin-Keywords-*.tar.gz

@@ -56,6 +56,8 @@ defines this field as:
 
     A List of keywords that describe this distribution. Keywords must not include whitespace.
 
+=for Pod::Coverage metadata mvp_aliases mvp_multivalue_args
+
 =head1 CONFIGURATION OPTIONS
 
 =head2 C<keyword>, C<keywords>

@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - now also adds keywods from a "KEYWORDS:" comment in the main
+            module
 
 0.001     2014-03-12 15:14:03Z
           - Initial release.

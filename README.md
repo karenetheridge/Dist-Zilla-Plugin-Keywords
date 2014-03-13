@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Keywords - add keywords to metadata in your distribution
 
 # VERSION
 
-version 0.001
+version 0.002
 
 # SYNOPSIS
 
@@ -14,6 +14,14 @@ In your `dist.ini`:
     keyword = plugin
     keyword = tool
     keywords = development Dist::Zilla
+
+Or, in your `dist.ini`:
+
+    [Keywords]
+
+And in your main module:
+
+    # KEYWORDS: plugin development tool
 
 # DESCRIPTION
 
@@ -29,6 +37,9 @@ defines this field as:
 
 One or more words to be added as keywords. Can be repeated more than once.
 Strings are broken up by whitespace and added as separate words.
+
+If no configuration is provided, the main module of your distribution is
+scanned for the _first_ `# KEYWORDS:` comment.
 
 # SUPPORT
 

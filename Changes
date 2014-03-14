@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - properly extract keywords from other comments than the first one
+            in the module
 
 0.002     2014-03-13 12:33:31Z
           - now also adds keywods from a "KEYWORDS:" comment in the main

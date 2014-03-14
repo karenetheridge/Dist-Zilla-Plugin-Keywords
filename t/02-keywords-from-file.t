@@ -19,6 +19,8 @@ my $tzil = Builder->from_config(
             ),
             path(qw(source lib Foo.pm)) => <<MODULE,
 package Foo;
+# ABSTRACT: here there be Foo
+# here is an irrelevant comment
 # KEYWORDS: foo bar baz
 # KEYWORDS: and more here, to be ignored
 1;

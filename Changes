@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.003     2014-03-14 15:35:22Z
           - properly extract keywords from other comments than the first one
             in the module
 

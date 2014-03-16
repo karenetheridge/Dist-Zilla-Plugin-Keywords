@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.004     2014-03-16 09:04:34Z
           - bump dependency on Dist::Zilla to get a minor fix in the PPI role
 
 0.003     2014-03-14 15:35:22Z

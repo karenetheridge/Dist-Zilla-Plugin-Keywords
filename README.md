@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Keywords - add keywords to metadata in your distribution
 
 # VERSION
 
-version 0.003
+version 0.004
 
 # SYNOPSIS
 

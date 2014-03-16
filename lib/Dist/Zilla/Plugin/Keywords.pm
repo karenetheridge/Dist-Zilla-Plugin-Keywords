@@ -6,7 +6,8 @@ package Dist::Zilla::Plugin::Keywords;
 # vim: set ts=8 sw=4 tw=78 et :
 
 use Moose;
-with 'Dist::Zilla::Role::MetaProvider', 'Dist::Zilla::Role::PPI';
+with 'Dist::Zilla::Role::MetaProvider',
+    'Dist::Zilla::Role::PPI' => { -version => '5.009' };
 use Moose::Util::TypeConstraints;
 use MooseX::Types::Moose 'ArrayRef';
 use MooseX::Types::Common::String 'NonEmptySimpleStr';

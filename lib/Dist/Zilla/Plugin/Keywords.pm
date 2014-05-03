@@ -38,7 +38,11 @@ has keywords => (
 sub metadata
 {
     my $self = shift;
-    return { keywords => $self->keywords };
+
+    my $keywords = $self->keywords;
+    return {
+        @$keywords ? ( keywords => $keywords ) : ()
+    };
 }
 
 sub keywords_from_file

@@ -1,4 +1,6 @@
+/.ackrc
 /.build/
-!.gitignore
+!/.gitignore
+/.latest
 /Dist-Zilla-Plugin-Keywords-*/
 /Dist-Zilla-Plugin-Keywords-*.tar.gz

@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.005     2014-05-04 03:56:25Z
           - no longer adding an empty arrayref to metadata if there is no
             data to add
           - properly handle utf8 (or other)-encoded keyword strings

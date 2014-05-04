@@ -49,5 +49,10 @@ cmp_deeply(
     'metadata is correct',
 ) or diag 'saw messages:' . join("\n", @{ $tzil->log_messages });
 
+cmp_deeply(
+    $tzil->log_messages,
+    superbagof('[Keywords] found keyword string in main module: foo bar baz'),
+    'we logged the strings we used',
+) or diag 'got: ', explain $tzil->log_messages;
 
 done_testing;

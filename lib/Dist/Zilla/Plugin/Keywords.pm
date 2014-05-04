@@ -51,15 +51,17 @@ sub keywords_from_file
 
     my $document = $self->ppi_document_for_file($file);
 
-    my @keywords;
+    my $keywords;
     $document->find(
         sub {
             die if $_[1]->isa('PPI::Token::Comment')
-                and (@keywords = $_[1]->content =~ m/^\s*#+\s*KEYWORDS:\s*(.+)$/m);
+                and ($keywords) = $_[1]->content =~ m/^\s*#+\s*KEYWORDS:\s*(.+)$/m;
         }
     );
-    $self->log('found keyword string in main module: ' . $_) foreach @keywords;
-    return map { split /\s+/ } @keywords;
+    return if not $keywords;
+
+    $self->log('found keyword string in main module: ' . $keywords);
+    return split /\s+/, $keywords;
 }
 
 __PACKAGE__->meta->make_immutable;

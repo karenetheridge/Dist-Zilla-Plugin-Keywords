@@ -39,7 +39,7 @@ MODULE
 $tzil->chrome->logger->set_debug(1);
 $tzil->build;
 
-my $json = $tzil->slurp_file('build/META.json');
+my $json = path($tzil->tempdir, qw(build META.json))->slurp_raw;
 cmp_deeply(
     $json,
     json(superhashof({

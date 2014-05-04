@@ -3,6 +3,7 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
           - no longer adding an empty arrayref to metadata if there is no
             data to add
+          - properly handle utf8 (or other)-encoded keyword strings
 
 0.004     2014-03-16 09:04:34Z
           - bump dependency on Dist::Zilla to get a minor fix in the PPI role

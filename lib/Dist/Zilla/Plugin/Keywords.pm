@@ -11,6 +11,7 @@ with 'Dist::Zilla::Role::MetaProvider',
 use Moose::Util::TypeConstraints;
 use MooseX::Types::Moose 'ArrayRef';
 use MooseX::Types::Common::String 'NonEmptySimpleStr';
+use Encode 'decode';
 use namespace::autoclean;
 
 my $word = subtype NonEmptySimpleStr,
@@ -59,6 +60,9 @@ sub keywords_from_file
         }
     );
     return if not $keywords;
+
+    # TODO: skip decoding logic if/when PPI is new enough
+    $keywords = decode($file->encoding, $keywords, Encode::FB_CROAK);
 
     $self->log('found keyword string in main module: ' . $keywords);
     return split /\s+/, $keywords;

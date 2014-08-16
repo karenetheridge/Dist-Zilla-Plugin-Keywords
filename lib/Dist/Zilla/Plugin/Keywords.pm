@@ -93,7 +93,7 @@ And in your main module:
 =head1 DESCRIPTION
 
 This plugin adds metadata to your distribution under the C<keywords> field.
-The L<CPAN meta specification|https://metacpan.org/pod/CPAN::Meta::Spec#keywords>
+The L<CPAN meta specification|CPAN::Meta::Spec/keywords>
 defines this field as:
 
     A List of keywords that describe this distribution. Keywords must not include whitespace.
@@ -122,7 +122,7 @@ I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 
 =begin :list
 
-* L<https://metacpan.org/pod/CPAN::Meta::Spec#keywords>
+* L<CPAN::Meta::Spec/keywords>
 
 =end :list
 

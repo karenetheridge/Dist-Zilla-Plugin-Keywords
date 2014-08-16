@@ -36,6 +36,9 @@ cmp_deeply(
         keywords => [qw(foo bar baz)],
     }),
     'metadata contains merged keywords',
-) or diag 'saw messages:' . join("\n", @{ $tzil->log_messages });
+) or diag 'got distmeta: ', explain $tzil->distmeta;
+
+diag 'saw log messages: ', explain($tzil->log_messages)
+    if not Test::Builder->new->is_passing;
 
 done_testing;

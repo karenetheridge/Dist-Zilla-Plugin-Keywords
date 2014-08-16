@@ -47,6 +47,7 @@ INI
         },
     );
 
+    $tzil->chrome->logger->set_debug(1);
     $tzil->build;
 
     cmp_deeply(
@@ -56,7 +57,10 @@ INI
             keywords => [ qw(foo bar baz) ],
         }),
         'metadata is correct',
-    );
+    ) or diag 'got distmeta: ', explain $tzil->distmeta;
+
+    diag 'saw log messages: ', explain($tzil->log_messages)
+        if not Test::Builder->new->is_passing;
 }
 
 done_testing;

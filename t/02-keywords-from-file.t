@@ -44,12 +44,15 @@ cmp_deeply(
         keywords => [ qw(foo bar baz) ],
     }),
     'metadata is correct',
-) or diag 'saw messages:' . join("\n", @{ $tzil->log_messages });
+) or diag 'got distmeta: ', explain $tzil->distmeta;
 
 cmp_deeply(
     $tzil->log_messages,
     superbagof('[Keywords] found keyword string in main module: foo bar baz'),
     'we logged the strings we used',
-) or diag 'got: ', explain $tzil->log_messages;
+);
+
+diag 'saw log messages: ', explain($tzil->log_messages)
+    if not Test::Builder->new->is_passing;
 
 done_testing;

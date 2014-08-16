@@ -9,7 +9,9 @@ use Test::DZil;
 use Path::Tiny;
 
 plan skip_all => 'proper keyword merging depends on CPAN::Meta::Merge and Dist::Zilla support'
-    unless $ENV{AUTHOR_TESTING} and eval 'require CPAN::Meta::Merge; 1';
+    unless $ENV{AUTHOR_TESTING}
+        and eval 'require CPAN::Meta::Merge; 1'
+        and eval { Dist::Zilla->VERSION('5.021') };
 
 my $tzil = Builder->from_config(
     { dist_root => 't/does_not_exist' },

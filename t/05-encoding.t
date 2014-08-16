@@ -5,7 +5,6 @@ use utf8;
 use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::Deep;
-use Test::Deep::JSON;
 use Test::DZil;
 use Path::Tiny;
 
@@ -15,7 +14,6 @@ my $tzil = Builder->from_config(
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
-                [ MetaJSON => ],
                 [ Keywords => ],
             ),
             path(qw(source lib Foo.pm)) => <<MODULE,
@@ -33,13 +31,12 @@ MODULE
 $tzil->chrome->logger->set_debug(1);
 $tzil->build;
 
-my $json = path($tzil->tempdir, qw(build META.json))->slurp_raw;
 cmp_deeply(
-    $json,
-    json(superhashof({
+    $tzil->distmeta,
+    superhashof({
         dynamic_config => 0,
         keywords => ['pi', 'π'],
-    })),
+    }),
     'metadata contains keywords',
 ) or diag 'saw messages:' . join("\n", @{ $tzil->log_messages });
 

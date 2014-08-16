@@ -4,7 +4,6 @@ use warnings FATAL => 'all';
 use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::Deep;
-use Test::Deep::JSON;
 use Test::DZil;
 use Path::Tiny;
 
@@ -19,7 +18,6 @@ my $tzil = Builder->from_config(
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
-                [ MetaJSON => ],
                 [ Keywords => 'from plugin' => { keywords => [qw(foo bar)] } ],
                 [ Keywords => 'direct' => { keywords => [qw(bar baz)] } ],
             ),
@@ -31,13 +29,12 @@ my $tzil = Builder->from_config(
 $tzil->chrome->logger->set_debug(1);
 $tzil->build;
 
-my $json = path($tzil->tempdir, qw(build META.json))->slurp_raw;
 cmp_deeply(
-    $json,
-    json(superhashof({
+    $tzil->distmeta,
+    superhashof({
         dynamic_config => 0,
         keywords => [qw(foo bar baz)],
-    })),
+    }),
     'metadata contains merged keywords',
 ) or diag 'saw messages:' . join("\n", @{ $tzil->log_messages });
 

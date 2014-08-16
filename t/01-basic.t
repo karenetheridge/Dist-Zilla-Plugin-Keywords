@@ -4,7 +4,6 @@ use warnings FATAL => 'all';
 use Test::More;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::Deep;
-use Test::Deep::JSON;
 use Test::DZil;
 use Path::Tiny;
 
@@ -20,23 +19,19 @@ PREAMBLE
 
 foreach my $dist_ini (
     simple_ini(
-        [ MetaJSON => ],
         [ Keywords => { keywords => [ qw(foo bar baz) ] } ],
     ),
     $preamble . <<'INI',
-[MetaJSON]
 [Keywords]
 keyword = foo
 keyword = bar
 keyword = baz
 INI
     $preamble . <<'INI',
-[MetaJSON]
 [Keywords]
 keywords = foo bar baz
 INI
     $preamble . <<'INI',
-[MetaJSON]
 [Keywords]
 keywords = foo bar
 keyword = baz
@@ -54,13 +49,12 @@ INI
 
     $tzil->build;
 
-    my $json = path($tzil->tempdir, qw(build META.json))->slurp_raw;
     cmp_deeply(
-        $json,
-        json(superhashof({
+        $tzil->distmeta,
+        superhashof({
             dynamic_config => 0,
             keywords => [ qw(foo bar baz) ],
-        })),
+        }),
         'metadata is correct',
     );
 }

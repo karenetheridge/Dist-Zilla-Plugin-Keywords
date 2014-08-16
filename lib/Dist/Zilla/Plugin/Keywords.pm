@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package Dist::Zilla::Plugin::Keywords;
-# ABSTRACT: add keywords to metadata in your distribution
+# ABSTRACT: Add keywords to metadata in your distribution
 # KEYWORDS: plugin distribution metadata cpan-meta keywords
 # vim: set ts=8 sw=4 tw=78 et :
 

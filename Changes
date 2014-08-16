@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - soften the diagnostic string from always bleating it to only when
+            --verbose is set
 
 0.005     2014-05-04 03:56:25Z
           - no longer adding an empty arrayref to metadata if there is no

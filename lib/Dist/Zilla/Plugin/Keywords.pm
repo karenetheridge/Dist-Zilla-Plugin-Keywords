@@ -64,7 +64,7 @@ sub keywords_from_file
     # TODO: skip decoding logic if/when PPI is new enough
     $keywords = Encode::decode($file->encoding, $keywords, Encode::FB_CROAK);
 
-    $self->log('found keyword string in main module: ' . $keywords);
+    $self->log_debug('found keyword string in main module: ' . $keywords);
     return split /\s+/, $keywords;
 }
 

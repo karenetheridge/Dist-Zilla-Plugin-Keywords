@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.006     2014-08-16 02:49:06Z
           - soften the diagnostic string from always bleating it to only when
             --verbose is set
 

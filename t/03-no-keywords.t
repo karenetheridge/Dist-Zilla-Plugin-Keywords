@@ -13,6 +13,7 @@ my $tzil = Builder->from_config(
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
+                [ MetaConfig => ],
                 [ Keywords => ],
             ),
             path(qw(source lib Foo.pm)) => "package Foo;\n1\n",
@@ -25,8 +26,25 @@ $tzil->build;
 
 cmp_deeply(
     $tzil->distmeta,
-    # TODO: replace with Test::Deep::notexists($key)
-    code(sub { return !exists $_[0]->{keywords} ? 1 : ( 0, 'found keywords key' ) }),
+    all(
+        # TODO: replace with Test::Deep::notexists($key)
+        code(sub { return !exists $_[0]->{keywords} ? 1 : ( 0, 'found keywords key' ) }),
+        superhashof({
+            dynamic_config => 0,
+            x_Dist_Zilla => superhashof({
+                plugins => supersetof(
+                    {
+                        class => 'Dist::Zilla::Plugin::Keywords',
+                        config => {
+                            'Dist::Zilla::Plugin::Keywords' => { keywords => [] },
+                        },
+                        name => 'Keywords',
+                        version => ignore,
+                    },
+                ),
+            }),
+        })
+    ),
     'empty keywords field does not appear in metadata',
 ) or diag 'got distmeta: ', explain $tzil->distmeta;
 

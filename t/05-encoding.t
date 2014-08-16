@@ -14,6 +14,7 @@ my $tzil = Builder->from_config(
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
+                [ MetaConfig => ],
                 [ Keywords => ],
             ),
             path(qw(source lib Foo.pm)) => <<MODULE,
@@ -36,6 +37,20 @@ cmp_deeply(
     superhashof({
         dynamic_config => 0,
         keywords => ['pi', 'π'],
+        x_Dist_Zilla => superhashof({
+            plugins => supersetof(
+                {
+                    class => 'Dist::Zilla::Plugin::Keywords',
+                    config => {
+                        'Dist::Zilla::Plugin::Keywords' => {
+                            keywords => [qw( pi π )],
+                        },
+                    },
+                    name => 'Keywords',
+                    version => ignore,
+                },
+            ),
+        }),
     }),
     'metadata contains keywords',
 ) or diag 'got distmeta: ', explain $tzil->distmeta;

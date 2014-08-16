@@ -15,10 +15,12 @@ author   = E. Xavier Ample <example@example.org>
 license  = Perl_5
 copyright_holder = E. Xavier Ample
 
+[MetaConfig]
 PREAMBLE
 
 foreach my $dist_ini (
     simple_ini(
+        [ MetaConfig => ],
         [ Keywords => { keywords => [ qw(foo bar baz) ] } ],
     ),
     $preamble . <<'INI',
@@ -55,6 +57,20 @@ INI
         superhashof({
             dynamic_config => 0,
             keywords => [ qw(foo bar baz) ],
+            x_Dist_Zilla => superhashof({
+                plugins => supersetof(
+                    {
+                        class => 'Dist::Zilla::Plugin::Keywords',
+                        config => {
+                            'Dist::Zilla::Plugin::Keywords' => {
+                                keywords => [qw(foo bar baz)],
+                            },
+                        },
+                        name => 'Keywords',
+                        version => ignore,
+                    },
+                ),
+            }),
         }),
         'metadata is correct',
     ) or diag 'got distmeta: ', explain $tzil->distmeta;

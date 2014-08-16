@@ -18,6 +18,7 @@ my $tzil = Builder->from_config(
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
+                [ MetaConfig => ],
                 [ Keywords => 'from plugin' => { keywords => [qw(foo bar)] } ],
                 [ Keywords => 'direct' => { keywords => [qw(bar baz)] } ],
             ),
@@ -34,6 +35,30 @@ cmp_deeply(
     superhashof({
         dynamic_config => 0,
         keywords => [qw(foo bar baz)],
+        x_Dist_Zilla => superhashof({
+            plugins => supersetof(
+                {
+                    class => 'Dist::Zilla::Plugin::Keywords',
+                    config => {
+                        'Dist::Zilla::Plugin::Keywords' => {
+                            kewords => [qw(foo bar)],
+                        },
+                    },
+                    name => 'from plugin',
+                    version => ignore,
+                },
+                {
+                    class => 'Dist::Zilla::Plugin::Keywords',
+                    config => {
+                        'Dist::Zilla::Plugin::Keywords' => {
+                            kewords => [qw(bar baz)],
+                        },
+                    },
+                    name => 'direct',
+                    version => ignore,
+                },
+            ),
+        }),
     }),
     'metadata contains merged keywords',
 ) or diag 'got distmeta: ', explain $tzil->distmeta;

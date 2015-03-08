@@ -41,7 +41,7 @@ cmp_deeply(
                     class => 'Dist::Zilla::Plugin::Keywords',
                     config => {
                         'Dist::Zilla::Plugin::Keywords' => {
-                            kewords => [qw(foo bar)],
+                            keywords => [qw(foo bar)],
                         },
                     },
                     name => 'from plugin',
@@ -51,7 +51,7 @@ cmp_deeply(
                     class => 'Dist::Zilla::Plugin::Keywords',
                     config => {
                         'Dist::Zilla::Plugin::Keywords' => {
-                            kewords => [qw(bar baz)],
+                            keywords => [qw(bar baz)],
                         },
                     },
                     name => 'direct',

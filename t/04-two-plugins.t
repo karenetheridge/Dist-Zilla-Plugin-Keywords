@@ -45,7 +45,7 @@ cmp_deeply(
                         },
                     },
                     name => 'from plugin',
-                    version => ignore,
+                    version => Dist::Zilla::Plugin::Keywords->VERSION,
                 },
                 {
                     class => 'Dist::Zilla::Plugin::Keywords',
@@ -55,7 +55,7 @@ cmp_deeply(
                         },
                     },
                     name => 'direct',
-                    version => ignore,
+                    version => Dist::Zilla::Plugin::Keywords->VERSION,
                 },
             ),
         }),

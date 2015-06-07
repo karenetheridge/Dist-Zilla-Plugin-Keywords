@@ -5,6 +5,8 @@ package Dist::Zilla::Plugin::Keywords;
 # KEYWORDS: plugin distribution metadata cpan-meta keywords
 # vim: set ts=8 sw=4 tw=78 et :
 
+our $VERSION = '0.007';
+
 use Moose;
 with 'Dist::Zilla::Role::MetaProvider',
     'Dist::Zilla::Role::PPI' => { -version => '5.009' };

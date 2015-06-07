@@ -53,7 +53,7 @@ cmp_deeply(
                         },
                     },
                     name => 'Keywords',
-                    version => ignore,
+                    version => Dist::Zilla::Plugin::Keywords->VERSION,
                 },
             ),
         }),

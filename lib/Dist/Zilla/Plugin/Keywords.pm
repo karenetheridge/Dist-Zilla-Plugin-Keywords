@@ -13,7 +13,7 @@ with 'Dist::Zilla::Role::MetaProvider',
 use Moose::Util::TypeConstraints;
 use MooseX::Types::Moose 'ArrayRef';
 use MooseX::Types::Common::String 'NonEmptySimpleStr';
-use Encode;
+use Encode ();
 use namespace::autoclean;
 
 my $word = subtype NonEmptySimpleStr,

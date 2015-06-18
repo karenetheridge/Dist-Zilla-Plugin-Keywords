@@ -12,7 +12,7 @@ plan skip_all => 'proper keyword merging depends on CPAN::Meta::Merge and Dist::
         and eval 'require Dist::Zilla; Dist::Zilla->VERSION("5.021"); 1';
 
 my $tzil = Builder->from_config(
-    { dist_root => 't/does_not_exist' },
+    { dist_root => 'does-not-exist' },
     {
         add_files => {
             path(qw(source dist.ini)) => simple_ini(

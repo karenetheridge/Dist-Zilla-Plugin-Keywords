@@ -45,6 +45,7 @@ around dump_config => sub
 
     $config->{+__PACKAGE__} = {
         keywords => $self->keywords,
+        blessed($self) ne __PACKAGE__ ? ( version => $VERSION ) : (),
     };
     return $config;
 };

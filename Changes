@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-Keywords
 
-{{$NEXT}}
+0.007     2016-04-24 20:49:42Z
           - do not decode the already-decoded strings from PPI, now that
             Dist::Zilla::Role::PPI is fixed (in 6.003)
 

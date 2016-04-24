@@ -5,7 +5,7 @@ package Dist::Zilla::Plugin::Keywords;
 # ABSTRACT: Add keywords to metadata in your distribution
 # KEYWORDS: plugin distribution metadata cpan-meta keywords
 
-our $VERSION = '0.007';
+our $VERSION = '0.008';
 
 use Moose;
 with 'Dist::Zilla::Role::MetaProvider',

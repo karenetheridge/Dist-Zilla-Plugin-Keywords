@@ -75,8 +75,11 @@ sub keywords_from_file
     );
     return if not $keywords;
 
-    # TODO: skip decoding logic if/when PPI is new enough
-    $keywords = Encode::decode($file->encoding, $keywords, Encode::FB_CROAK);
+    if (not eval { Dist::Zilla::Role::PPI->VERSION('6.003') })
+    {
+        # older Dist::Zilla::Role::PPI passes encoded content to PPI
+        $keywords = Encode::decode($file->encoding, $keywords, Encode::FB_CROAK);
+    }
 
     $self->log_debug('found keyword string in main module: ' . $keywords);
     return split /\s+/, $keywords;

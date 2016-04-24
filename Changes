@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-Keywords
 
 {{$NEXT}}
+          - do not decode the already-decoded strings from PPI, now that
+            Dist::Zilla::Role::PPI is fixed (in 6.003)
 
 0.006     2014-08-16 02:49:06Z
           - soften the diagnostic string from always bleating it to only when

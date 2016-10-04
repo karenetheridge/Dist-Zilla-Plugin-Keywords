@@ -8,8 +8,8 @@ use Test::DZil;
 use Path::Tiny;
 
 plan skip_all => 'proper keyword merging depends on CPAN::Meta::Merge and Dist::Zilla support: ' . $@
-    unless eval 'require CPAN::Meta::Merge; CPAN::Meta::Merge->VERSION("2.142060"); 1'
-        and eval 'require Dist::Zilla; Dist::Zilla->VERSION("5.021"); 1';
+    unless eval { require CPAN::Meta::Merge; CPAN::Meta::Merge->VERSION('2.142060'); 1 }
+        and eval { require Dist::Zilla; Dist::Zilla->VERSION('5.021'); 1 };
 
 my $tzil = Builder->from_config(
     { dist_root => 'does-not-exist' },

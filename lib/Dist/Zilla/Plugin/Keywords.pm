@@ -11,25 +11,14 @@ use Moose;
 with 'Dist::Zilla::Role::MetaProvider',
     'Dist::Zilla::Role::PPI' => { -version => '5.009' };
 use Moose::Util::TypeConstraints;
-use MooseX::Types::Moose 'ArrayRef';
-use MooseX::Types::Common::String 'NonEmptySimpleStr';
 use Encode ();
 use namespace::autoclean;
-
-my $word = subtype NonEmptySimpleStr,
-    where { !/\s/ };
-
-my $wordlist = subtype ArrayRef[$word];
-coerce $wordlist, from ArrayRef[NonEmptySimpleStr],
-    via { [ map { split /\s+/, $_ } @$_ ] };
-
 
 sub mvp_aliases { +{ keyword => 'keywords' } }
 sub mvp_multivalue_args { qw(keywords) }
 
 has keywords => (
-    is => 'ro', isa => $wordlist,
-    coerce => 1,
+    is => 'ro', isa => 'ArrayRef[Str]',
     lazy => 1,
     default => sub {
         my $self = shift;
@@ -37,6 +26,20 @@ has keywords => (
         \@keywords;
     },
 );
+
+around BUILDARGS => sub
+{
+    my $orig = shift;
+    my $self = shift;
+
+    my $args = $self->$orig(@_);
+    if (my $keywords = delete $args->{keywords})
+    {
+        $args->{keywords} = [ map split(/\s+/, $_), @$keywords ];
+    }
+
+    return $args;
+};
 
 around dump_config => sub
 {

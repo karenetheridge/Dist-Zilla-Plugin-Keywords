@@ -69,7 +69,7 @@ cmp_deeply(
 ) or diag 'got distmeta: ', explain $tzil->distmeta;
 
 cmp_deeply(
-    [ grep { /^\[Keywords\]/ } @{ $tzil->log_messages } ],
+    [ grep /^\[Keywords\]/, @{ $tzil->log_messages } ],
     [ '[Keywords] found keyword string in main module: oh hai' ],
     'we logged the strings we used, with no encoding errors',
 );
